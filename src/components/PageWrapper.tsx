@@ -1,33 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import "primereact/resources/primereact.min.css";
-import 'primeicons/primeicons.css';
-import 'primereact/resources/themes/soho-dark/theme.css';
-import '../styles/global.css'
-
-
-/* TODO: Enable this again once tailwind is working. */
 import LoadingIndicator from '../components/ui/loadingIndicator';
-/* <LoadingIndicator /> */
+import PrimeReact from 'primereact/api';
 
+import { RootState } from '../state/store';
+import { connect } from 'react-redux';
+import ProductionThemeSourcing from '../styles/ThemeSwitching';
+
+const connector = connect((state: RootState, props: any) => ({
+    darkMode: state.UI.darkMode,
+    props: props
+}))
 
 interface PageWrapperProps {
     children: React.ReactNode
     title: string
+    hideToolbar?: boolean
+    darkMode: boolean
 }
 
-const PageWrapper = (props: PageWrapperProps) => {
+const PageWrapper = connector((props: PageWrapperProps) => {
+
     return (
-        <IonPage>
-            <IonHeader>
-                <IonToolbar>
-                    <IonTitle>{props.title}</IonTitle>
-                </IonToolbar>
-            </IonHeader>
-            {props.children}
-        </IonPage>
+        <>
+            <ProductionThemeSourcing />
+            <IonPage>
+                {!props.hideToolbar && <IonHeader>
+                    <IonToolbar>
+                        <IonTitle>{props.title}</IonTitle>
+                    </IonToolbar>
+                </IonHeader>}
+                <LoadingIndicator />
+                {props.children}
+            </IonPage>
+        </>
     )
-}
+})
 
 
 PageWrapper.displayName = "PageWrapper"

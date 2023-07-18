@@ -1,18 +1,16 @@
-
-import { Redirect, Route } from 'react-router-dom';
 import {
     IonApp,
-    IonIcon,
-    IonLabel,
-    IonRouterOutlet,
-    IonTabBar,
-    IonTabButton,
-    IonTabs,
     setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import { KonstaProvider } from 'konsta/react';
 import { Provider } from 'react-redux';
 import store from './state/store';
+
+import "primereact/resources/primereact.min.css";
+import 'primeicons/primeicons.css';
+/* import 'primereact/resources/themes/soho-dark/theme.css'; */
+/* import 'primereact/resources/themes/soho-light/theme.css'; */
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -32,18 +30,24 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import './styles/global.css'
+
 import Tabs from './components/ui/tabs';
 
 setupIonicReact();
 
 const App: React.FC = () => (
-    <Provider store={store}>
-        <IonApp>
-            <IonReactRouter>
-                <Tabs />
-            </IonReactRouter>
-        </IonApp>
-    </Provider>
+    <>
+        <KonstaProvider theme="parent">
+            <Provider store={store}>
+                <IonApp>
+                    <IonReactRouter>
+                        <Tabs />
+                    </IonReactRouter>
+                </IonApp>
+            </Provider>
+        </KonstaProvider>
+    </>
 );
 
 export default App;
@@ -51,19 +55,3 @@ export default App;
 
 
 
-{/* <IonTabs> */ }
-{/*     <IonTabBar slot="bottom"> */ }
-{/*         <IonTabButton tab="tab1" href="/tab1"> */ }
-{/*             <IonIcon aria-hidden="true" icon={statsChart} /> */ }
-{/*             <IonLabel>Dashboard</IonLabel> */ }
-{/*         </IonTabButton> */ }
-{/*         <IonTabButton tab="tab2" href="/tab2"> */ }
-{/*             <IonIcon aria-hidden="true" icon={add} /> */ }
-{/*             <IonLabel>Request</IonLabel> */ }
-{/*         </IonTabButton> */ }
-{/*         <IonTabButton tab="tab3" href="/tab3"> */ }
-{/*             <IonIcon aria-hidden="true" icon={person} /> */ }
-{/*             <IonLabel>Profile</IonLabel> */ }
-{/*         </IonTabButton> */ }
-{/*     </IonTabBar> */ }
-{/* </IonTabs> */ }

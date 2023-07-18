@@ -1,7 +1,17 @@
 "use client"
 import React from 'react'
-import { Card } from 'primereact/card';
-
+import {
+    Page,
+    Navbar,
+    NavbarBackLink,
+    Card,
+    BlockTitle,
+    List,
+    ListItem,
+    Link,
+    Button,
+} from 'konsta/react';
+import { Props } from 'konsta/react/types/Card'
 
 
 interface CardProps {
@@ -11,14 +21,22 @@ interface CardProps {
     additionalParams?: object
     extraClasses?: string
     extraStyles?: object
+    konsta?: Props
 }
 
 const GenericCard = (props: CardProps) => {
     let params: { className?: string } = {}
     props.additionalParams && (params = { ...props.additionalParams })
     params['className'] = props.className || `w-fit flex flex-col ${props.extraClasses || ""}`
+    const konstaprops = props.konsta || {}
     return (
-        <Card {...params} style={{
+        <Card colors={{
+            bgIos: "bg-ios-light-surface-1 dark:bg-ios-dark-surface-1",
+            textIos: "",
+            bgMaterial: "bg-md-light-surface-1 dark:bg-md-dark-surface-1",
+            textMaterial: "text-md-light-on-surface dark:text-md-dark-on-surface"
+
+        }} {...params} {...konstaprops} style={{
             ...(props.extraStyles && { ...props.extraStyles })
         }}>{props.children}</Card>
     )

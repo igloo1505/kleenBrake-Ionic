@@ -32,6 +32,7 @@ const LoginCard = () => {
         })
     }
     const handleBooleanChange = (e: CheckboxChangeEvent) => {
+        console.log("e: ", e)
         const targetName = e.target.name as keyof loginCardData
         setData({
             ...data,
@@ -48,11 +49,11 @@ const LoginCard = () => {
 
 
     return (
-        <GenericCard extraClasses="w-full">
+        <GenericCard extraClasses="w-full" konsta={{ raised: true }}>
             <div className='px-4 py-3 flex flex-col gap-4 w-full'>
                 <TextInput extraClasses="w-full" value={data.email} type="text" onChange={handleChange} name="email" label="Email" />
                 <TextInput value={data.password} type="password" onChange={handleChange} name="password" label="Password" />
-                <div className={'flex flex-row justify-between items-center'}>
+                <div className={'flex flex-row justify-between items-center w-full gap-4'}>
                     <Checkbox value={data.rememberMe} label="Remember Me" name="rememberMe" onChange={handleBooleanChange} />
                     <Button label="Login" raised onClick={handleSubmit} />
                 </div>
