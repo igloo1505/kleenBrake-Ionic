@@ -33,6 +33,7 @@ import './theme/variables.css';
 import './styles/global.css'
 
 import Tabs from './components/ui/tabs';
+import Modals from './components/ui/modals/Modals';
 
 setupIonicReact();
 
@@ -40,6 +41,7 @@ const App: React.FC = () => (
     <>
         <KonstaProvider theme="parent">
             <Provider store={store}>
+                <Modals />
                 <IonApp>
                     <IonReactRouter>
                         <Tabs />

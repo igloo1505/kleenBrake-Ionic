@@ -3,6 +3,7 @@ import { useClickOutside } from 'primereact/hooks'
 import React, { useRef } from 'react'
 import { closeAllModals } from '../../../state/slices/ui'
 import store from '../../../state/store'
+import GenericCard from '../Card'
 
 
 interface StylesInterface {
@@ -31,40 +32,34 @@ const ModalWrapper = ({ children, open, title, styles, confirmCallback, confirmL
     confirmCallback && rows.push("auto")
     return (
         <>
-            <div className={'fixed grid transition-all duration-500 z-[1000]'}
-                style={{
-                    top: "50%",
+            <GenericCard extraClasses="grid transition-all duration-500 z-[1000] fixed w-full border-[--surface-border] border" konsta={{ raised: true }}
+                extraStyles={{
+                    top: "2rem",
                     left: "50%",
-                    transform: `translate(-50%, ${open ? "-50%" : "-200vh"})`,
+                    /* transform: `translate(-50%, ${open ? "-50%" : "-200vh"})`, */
+                    transform: `translate(-50%, ${open ? "0" : "-200vh"})`,
                     gridTemplateRows: `${rows.join(" ")}`,
                     minWidth: "min(80vw, 768px)",
-                    maxHeight: "calc(100vh - 6rem)",
+                    maxWidth: "calc(100vw - 2rem)",
+                    /* maxHeight: "calc(100vh - 6rem)", */
+                    margin: 0,
                     ...(styles?.container && { ...styles.container })
                 }}
                 ref={ref}
             >
-                {title && <div className={'w-full px-4 py-4 text-2xl bg-[--primary-color] text-[--primary-color-text]'}
+                {title && <div className={'w-full px-4 py-4 mb-4 text-2xl bg-[--primary-color] text-[--primary-color-text] '}
                     style={styles?.title ? styles.title : {}}
                 >{title}</div>}
-                <div
-                    style={{
-                        borderLeft: "1px solid var(--surface-border)",
-                        borderRight: "1px solid var(--surface-border)",
-                        borderBottom: "1px solid var(--surface-border)"
-                    }}
-                    className={'overflow-auto max-h-full'}
-                >
-                    {children}
-                    {confirmCallback && (
-                        <div className={'w-full flex flex-row justify-end items-center'}
-                            style={styles?.buttonContainer ? styles.buttonContainer : {}}
-                        >
-                            <a role="button" onClick={() => confirmCallback(true)}>{confirmLabel ? confirmLabel : "Agree"}</a>
-                        </div>
-                    )
-                    }
-                </div>
-            </div>
+                {children}
+                {confirmCallback && (
+                    <div className={'w-full flex flex-row justify-end items-center'}
+                        style={styles?.buttonContainer ? styles.buttonContainer : {}}
+                    >
+                        <a role="button" onClick={() => confirmCallback(true)}>{confirmLabel ? confirmLabel : "Agree"}</a>
+                    </div>
+                )
+                }
+            </GenericCard>
             <div className={'bg-[--backdrop-color] opacity-70 fixed h-full w-full top-0 left-0 transition-all duration-500 z-[999]'} style={{
                 transform: `scale(${open ? 1 : 0})`
             }} />

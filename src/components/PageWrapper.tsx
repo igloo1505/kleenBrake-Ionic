@@ -24,7 +24,7 @@ const PageWrapper = connector((props: PageWrapperProps) => {
     return (
         <>
             <ProductionThemeSourcing />
-            <IonPage>
+            <IonPage className='overflow-y-scroll py-6'>
                 {!props.hideToolbar && <IonHeader>
                     <IonToolbar>
                         <IonTitle>{props.title}</IonTitle>

@@ -1,6 +1,4 @@
-import Image from 'next/image';
-import React from 'react'
-import heroImage from '../../public/assets/development/heroPrimaryImage.jpg'
+import heroImage from '../../../public/assets/development/heroPrimaryImage.jpg'
 
 
 interface HeroCardRightProps {
@@ -9,10 +7,10 @@ interface HeroCardRightProps {
 
 const HeroCardRight = (props: HeroCardRightProps) => {
     return (
-        <Image
+        <img
             src={heroImage}
             alt="Panty Platform Image"
-            className={'max-h-[400px] w-auto rounded-lg'}
+            className={'max-h-[300px] w-auto rounded-lg my-4'}
         />
     )
 }

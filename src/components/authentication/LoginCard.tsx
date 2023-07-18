@@ -14,10 +14,14 @@ interface loginCardData {
     email: string
     password: string
     rememberMe: boolean
+
 }
 
+interface CardProps {
+    toggleSignup: (val: boolean) => void
+}
 
-const LoginCard = () => {
+const LoginCard = (props: CardProps) => {
     const router = useIonRouter()
     const [data, setData] = useState<loginCardData>({
         email: "",
@@ -55,6 +59,12 @@ const LoginCard = () => {
                 <TextInput value={data.password} type="password" onChange={handleChange} name="password" label="Password" />
                 <div className={'flex flex-row justify-between items-center w-full gap-4'}>
                     <Checkbox value={data.rememberMe} label="Remember Me" name="rememberMe" onChange={handleBooleanChange} />
+                </div>
+                <div className={'w-full grid grid-cols-2 gap-4'}>
+                    <Button label="Sign Up" raised onClick={() => {
+                        props.toggleSignup(true)
+                        console.log("In toggleSignup?")
+                    }} className={'whitespace-nowrap'} />
                     <Button label="Login" raised onClick={handleSubmit} />
                 </div>
             </div>

@@ -1,4 +1,3 @@
-import React from 'react'
 import {
     Checkbox,
 } from 'konsta/react';
@@ -11,7 +10,10 @@ interface KonstaCheckboxProps extends Props {
 const KonstaCheckbox = (props: KonstaCheckboxProps) => {
     return (
         <Checkbox
-            /* component="div" */
+            colors={{
+                borderIos: "var(--primary-color)",
+                borderMaterial: "var(--primary-color)"
+            }}
             {...props}
         />
     )

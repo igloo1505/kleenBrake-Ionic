@@ -1,27 +1,27 @@
 import React from 'react'
-import LoginPageHeader from '../../../components/authentication/LoginPageHeader';
-import LoginCard from '../../../components/authentication/LoginCard';
-import CallToLogin from '../../../components/authentication/CallToRegisterCard';
+import LoginPageHeader from '../LoginPageHeader'
+import SignUpCard from '../signup/Card'
 
 
-interface SignupStateProps {
 
+interface RegisterAccountStateProps {
+    toggleSignup: (val: boolean) => void
 }
 
-const SignupState = (props: SignupStateProps) => {
+const SignupAccountState = (props: RegisterAccountStateProps) => {
     return (
         <div className={'flex flex-col justify-center items-center px-6'}>
-            <LoginPageHeader />
+            <LoginPageHeader text={"Register"} />
             <div className={'w-full max-w-[min(100%,640px)] h-min grid-cols-1 grid place-items-center gap-4 mdlg:gap-6'}
             >
-                <LoginCard />
+                <SignUpCard toggleSignup={props.toggleSignup} />
             </div>
         </div>
     )
 }
 
 
-SignupState.displayName = "SignupState"
+SignupAccountState.displayName = "SignupAccountState"
 
 
-export default SignupState;
+export default SignupAccountState;

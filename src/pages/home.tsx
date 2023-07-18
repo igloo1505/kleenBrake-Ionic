@@ -1,5 +1,5 @@
-import React from 'react'
 import PageWrapper from '../components/PageWrapper';
+import LandingPageWrapper from '../components/landing/landingPageWrapper';
 
 
 
@@ -9,8 +9,8 @@ interface HomePageProps {
 
 const HomePage = (props: HomePageProps) => {
     return (
-        <PageWrapper title="Home">
-            Home Goes here...
+        <PageWrapper title="Home" hideToolbar={true} >
+            <LandingPageWrapper />
         </PageWrapper>
     )
 }

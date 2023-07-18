@@ -1,4 +1,3 @@
-"use client"
 import React from 'react'
 import {
     Page,
@@ -22,12 +21,16 @@ interface CardProps {
     extraClasses?: string
     extraStyles?: object
     konsta?: Props
+    ref?: React.Ref<any>
 }
 
 const GenericCard = (props: CardProps) => {
-    let params: { className?: string } = {}
+    let params: { className?: string, ref?: React.Ref<any> } = {}
     props.additionalParams && (params = { ...props.additionalParams })
     params['className'] = props.className || `w-fit flex flex-col ${props.extraClasses || ""}`
+    if (props.ref) {
+        params['ref'] = props.ref
+    }
     const konstaprops = props.konsta || {}
     return (
         <Card colors={{
@@ -36,9 +39,10 @@ const GenericCard = (props: CardProps) => {
             bgMaterial: "bg-md-light-surface-1 dark:bg-md-dark-surface-1",
             textMaterial: "text-md-light-on-surface dark:text-md-dark-on-surface"
 
-        }} {...params} {...konstaprops} style={{
-            ...(props.extraStyles && { ...props.extraStyles })
-        }}>{props.children}</Card>
+        }}
+            {...params} {...konstaprops} style={{
+                ...(props.extraStyles && { ...props.extraStyles })
+            }}>{props.children}</Card>
     )
 }
 

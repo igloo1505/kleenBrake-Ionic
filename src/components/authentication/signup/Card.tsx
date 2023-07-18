@@ -5,7 +5,8 @@ import Button from '../../io/Button';
 import { InputNumberValueChangeEvent } from 'primereact/inputnumber';
 import { CheckboxChangeEvent } from 'primereact/checkbox';
 import { createNewUser } from '../../../state/actions/authActions';
-import { useRouter } from 'next/navigation';
+import { useIonRouter } from '@ionic/react';
+import GenericCard from '../../ui/Card';
 
 const wrapperIds = {
     buyer: "buyer-wrapper-id",
@@ -13,7 +14,7 @@ const wrapperIds = {
 }
 
 interface SignUpCardProps {
-
+    toggleSignup: (val: boolean) => void
 }
 
 export interface FormDataType {
@@ -28,7 +29,7 @@ export interface FormDataType {
 
 
 const SignUpCard = (props: SignUpCardProps) => {
-    const router = useRouter()
+    const router = useIonRouter()
     const [isSeller, setIsSeller] = useState(false)
     const [formData, setFormData] = useState<FormDataType>({
         username: "",
@@ -85,17 +86,19 @@ const SignUpCard = (props: SignUpCardProps) => {
             router.push(`/dashboard`)
         }
     }
+    /* <div className={'shadow-lg overflow-hidden rounded-xl'}> */
     return (
-        <div className={'shadow-lg overflow-hidden rounded-xl'}>
+        <GenericCard extraClasses="w-full" konsta={{ raised: true }}>
             <div className={'relative py-4 px-4'} style={{
                 minWidth: "min(80vw, 640px)"
             }}>
                 <UserSignupCard active={!isSeller} handleString={handleStringChange} handleBoolean={handleBooleanChange} formData={formData} handleAge={handleAge} wrapperId={wrapperIds.buyer} />
             </div>
-            <div className={'w-full flex flex-row justify-end items-center py-6 px-6'}>
+            <div className={'w-full gap-4 grid grid-cols-2 mb-6'}>
+                <Button label="Login" onClick={() => props.toggleSignup(false)} />
                 <Button label="Sign Up" onClick={handleSignup} />
             </div>
-        </div >
+        </GenericCard >
     )
 }
 

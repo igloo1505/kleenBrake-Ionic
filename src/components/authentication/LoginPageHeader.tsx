@@ -3,13 +3,12 @@ import UnderlineGrowOnRender from '../ui/UnderlineGrowOnRender';
 import store from '../../state/store';
 
 
-const LoginPageHeader = () => {
-    const appData = store.getState()?.UI?.appData
+const LoginPageHeader = ({ text }: { text: string }) => {
     return (
         <div className={'text-5xl my-6 w-full flex justify-center text-center'}>
             <div className={'w-fit'}>
                 <div className={''}>
-                    {appData.authentication.loginPageHeading}
+                    {text}
                     <UnderlineGrowOnRender id="loginPageHeaderUnderline" />
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import SignupState from './signup';
+import RegisterState from './register';
+import SignupAccountState from './signup';
 
 
 interface SignupLoginSwitcherProps {
@@ -7,10 +8,12 @@ interface SignupLoginSwitcherProps {
 }
 
 const SignupLoginSwitcher = (props: SignupLoginSwitcherProps) => {
-    const [signUp, setSignUp] = useState(true)
+    const [signUp, setSignUp] = useState(false)
     return (
         <div>
-            <SignupState />
+            {
+                signUp ? <SignupAccountState toggleSignup={(v: boolean) => setSignUp(v)} /> : <RegisterState toggleSignup={(v: boolean) => setSignUp(v)} />
+            }
         </div>
     )
 }

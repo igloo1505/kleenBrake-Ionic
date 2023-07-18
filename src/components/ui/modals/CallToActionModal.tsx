@@ -1,10 +1,8 @@
-"use client"
 import React from 'react'
 import ModalWrapper from './ModalWrapper';
 import { Ripple } from 'primereact/ripple'
-import Button from '@/io/Button';
-import Link from 'next/link';
-
+import Button from '../../../components/io/Button';
+import Link from '../../../components/ui/konsta/RouterLink'
 
 const content = {
     bps: [

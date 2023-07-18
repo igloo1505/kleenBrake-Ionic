@@ -14,7 +14,7 @@ interface UserSignupCardProps {
     handleString: ChangeEventHandler
     handleBoolean: (e: CheckboxChangeEvent) => void
     handleAge: (e: DropdownChangeEvent) => void
-    formData: FormDataType 
+    formData: FormDataType
     wrapperId: string
 }
 
@@ -23,11 +23,11 @@ const UserSignupCard = ({ active, formData, handleBoolean, handleString, handleA
         return comparePasswordInputs(formData.password, confirmPass)
     }
     return (
-        <div className={'w-full px-4 h-full transition-transform duration-500 flex flex-col gap-2'} style={{
+        <div className={'w-full px-4 h-full transition-transform duration-500 flex flex-col gap-4'} style={{
             transform: active ? "translateX(0)" : "translateX(-100%)"
         }} id={wrapperId}>
             <TextInput validate={validateUsername} label="Username" name="username" value={formData.username} onChange={handleString} id="buyer-signup-username" />
-            <div className={'w-full grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center'}>
+            <div className={'w-full grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center'}>
                 <TextInput label="Password" name="password" value={formData.password} onChange={handleString} id="buyer-signup-password" isPassword={true} />
                 <TextInput validate={validatePasswordCompare} label="Confirm Password" name="confirmPassword" value={formData.confirmPassword} onChange={handleString} id="buyer-signup-confirmPassword" isPassword={true} />
             </div>
