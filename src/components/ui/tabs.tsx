@@ -1,9 +1,6 @@
 import React from 'react'
 
-import Tab1 from '../../pages/Tab1';
-import Tab2 from '../../pages/Tab2';
-import Tab3 from '../../pages/Tab3';
-import { ellipse, square, triangle, add, person, statsChart, home, logIn } from 'ionicons/icons';
+import { add, person, statsChart, home, logIn } from 'ionicons/icons';
 import { Redirect, Route } from 'react-router-dom';
 import {
     IonIcon,
@@ -22,6 +19,9 @@ import { RootState } from '../../state/store';
 import { connect } from 'react-redux';
 import LoginPage from '../../pages/login';
 import HomePage from '../../pages/home';
+import DashboardPage from '../../pages/dashboard';
+import RequestServicePage from '../../pages/requestService';
+import ProfilePage from '../../pages/profile';
 
 const connector = connect((state: RootState, props: any) => ({
     isAuthenticated: state.auth.authenticated,
@@ -29,47 +29,35 @@ const connector = connect((state: RootState, props: any) => ({
 }))
 
 
-const IonRouter = () => {
-    return (
-        <IonRouterOutlet>
-            <Route exact path="/tab1">
-                <Tab1 />
-            </Route>
-            <Route exact path="/tab2">
-                <Tab2 />
-            </Route>
-            <Route path="/tab3">
-                <Tab3 />
-            </Route>
-            <Route exact path="/">
-                <Redirect to="/tab1" />
-            </Route>
-            <Route exact path="/login">
-                <LoginPage />
-            </Route>
-            <Route exact path="/home">
-                <HomePage />
-            </Route>
-        </IonRouterOutlet>
-    )
-
-}
 
 
 const AuthenticatedTabs = () => {
     return (
         <IonTabs>
-            <IonRouter />
+            <IonRouterOutlet>
+                <Route exact path="/dashboard">
+                    <DashboardPage />
+                </Route>
+                <Route exact path="/requestService">
+                    <RequestServicePage />
+                </Route>
+                <Route exact path="/profile">
+                    <ProfilePage />
+                </Route>
+                <Route exact path="/">
+                    <Redirect to="/dashboard" />
+                </Route>
+            </IonRouterOutlet>
             <IonTabBar slot="bottom">
-                <IonTabButton tab="tab1" href="/tab1">
+                <IonTabButton tab="tab1" href="/dashboard">
                     <IonIcon aria-hidden="true" icon={statsChart} />
                     <IonLabel>Dashboard</IonLabel>
                 </IonTabButton>
-                <IonTabButton tab="tab2" href="/tab2">
+                <IonTabButton tab="tab2" href="/requestService">
                     <IonIcon aria-hidden="true" icon={add} />
                     <IonLabel>Request</IonLabel>
                 </IonTabButton>
-                <IonTabButton tab="tab3" href="/tab3">
+                <IonTabButton tab="tab3" href="/profile">
                     <IonIcon aria-hidden="true" icon={person} />
                     <IonLabel>Profile</IonLabel>
                 </IonTabButton>

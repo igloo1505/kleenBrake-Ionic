@@ -2,8 +2,10 @@ import { AxiosRequestConfig } from "axios";
 
 // export const _path = (subPath: string) => `http://localhost:3000/${subPath}`
 
+export const ROOTPATH = "http://localhost:3000"
+
 export default {
-    path: (subPath: string) => `http://localhost:3000/api/server${subPath}`,
+    path: (subPath: string) => `${ROOTPATH}/api/server${subPath}`,
     defaultAxiosConfig: {
         headers: {
             "Content-Type": "application/json"

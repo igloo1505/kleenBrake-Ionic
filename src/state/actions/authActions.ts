@@ -4,10 +4,11 @@ import store from '../store'
 import { LoginUserData, NewUserData } from '../types/AuthTypes'
 import { loginSuccess, logout } from '../slices/auth'
 import { publicError, showToast } from '../slices/ui'
+import { ROOTPATH } from '../../utils/axiosUtils'
 
 
 export const createNewUser = async (user: NewUserData) => {
-    const res = await axios.post("/api/users/createUser", { user }, defaultAxiosConfig)
+    const res = await axios.post(`${ROOTPATH}/api/users/createUser`, { user }, defaultAxiosConfig)
     if (res.data?.success) {
         store.dispatch(
             loginSuccess(res.data.newUser)
@@ -23,7 +24,9 @@ export const createNewUser = async (user: NewUserData) => {
 
 
 export const loginUser = async (data: LoginUserData) => {
-    const res = await axios.post("/api/users/login", { user: data }, defaultAxiosConfig)
+    console.log("data: ", data)
+    const res = await axios.post(`${ROOTPATH}/api/users/login`, { user: data }, defaultAxiosConfig)
+    console.log("res: ", res)
     if (res.data?.success) {
         store.dispatch(
             loginSuccess(res.data.user)
@@ -41,7 +44,7 @@ export const loginUser = async (data: LoginUserData) => {
 }
 
 export const logoutUser = async () => {
-    await axios.post("/api/users/logout", {}, defaultAxiosConfig)
+    await axios.post(`${ROOTPATH}/api/users/logout`, {}, defaultAxiosConfig)
     store.dispatch(
         logout()
     )

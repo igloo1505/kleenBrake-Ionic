@@ -4,6 +4,7 @@ import React, { useRef } from 'react'
 import { closeAllModals } from '../../../state/slices/ui'
 import store from '../../../state/store'
 import GenericCard from '../Card'
+import Button from '../../io/Button'
 
 
 interface StylesInterface {
@@ -55,7 +56,7 @@ const ModalWrapper = ({ children, open, title, styles, confirmCallback, confirmL
                     <div className={'w-full flex flex-row justify-end items-center'}
                         style={styles?.buttonContainer ? styles.buttonContainer : {}}
                     >
-                        <a role="button" onClick={() => confirmCallback(true)}>{confirmLabel ? confirmLabel : "Agree"}</a>
+                        <Button role="button" onClick={() => confirmCallback(true)}>{confirmLabel ? confirmLabel : "Agree"}</Button>
                     </div>
                 )
                 }

@@ -9,7 +9,6 @@ import { Prisma, ROLE, User } from '@prisma/client'
 
 
 
-
 export const validateOrRedirect = async (roles?: ROLE[] | null, include?: Prisma.UserInclude) => {
     const res = await axios.post(config.path("/validateOrRedirect"), { roles, include }, config.defaultAxiosConfig)
     console.log("res: ", res)
